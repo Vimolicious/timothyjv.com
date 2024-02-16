@@ -291,6 +291,10 @@ a.button:not(:last-child) {
     padding: var(--padding-card);
 }
 
+.emoji {
+    font-size: 8rem;
+}
+
 @media(max-width: 1050px) {
     :root {
         font-size: 15px;
