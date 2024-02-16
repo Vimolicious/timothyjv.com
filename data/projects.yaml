@@ -1,0 +1,9 @@
+- title: A* Pathfinding
+  date: 2021-08-31T00:00:00-00:00
+  description: Visualization of the A* pathfinding algorithm written in Java
+  github: Vimolicious/a-star
+
+- title: p5.js Sketches
+  date: 2021-07-28
+  description: Games and visualizations written in p5.js
+  github: Vimolicious/Sketches

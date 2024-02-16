@@ -1,0 +1,100 @@
+{{ define "main" }}
+    {{ partial "components/post-table" }}
+    {{ partial "components/post-row" }}
+    <section class="hero card">
+        <header>
+            <h1>Hi, I'm Tim!</h1>
+            <p>{{ .Site.Params.about }}</p>
+            <div>
+                <a class="button primary" href="https://github.com/Vimolicious">
+                    GitHub
+                </a>
+                <a class="button primary" href="/posts">
+                    Posts
+                </a>
+                <a class="button primary" href="mailto:{{ .Site.Params.email }}">
+                    Email
+                </a>
+            </div>
+        </header>
+        <img src="/img/memoji.png" alt="Memoji" width="225px">
+    </section>
+
+    <section class="with-more">
+        <header>
+            <h2>Projects</h2>
+            <a 
+                href="https://github.com/Vimolicious" 
+                class="button secondary"
+            >
+                More on GitHub
+            </a>
+        </header>
+        <div class="project-showcase">
+            {{- range (sort .Site.Data.projects "date" "desc") }}
+            <div class="card project-card">
+                <h3>{{ .title }}</h3>
+                <time>{{ .date | time.Format "January 2, 2006" }}</time>
+                <p>{{ .description }}</p>
+                {{- if isset . "github" }}
+                <a 
+                    href="https://github.com/{{ .github }}"
+                    class="button secondary"
+                >
+                    GitHub
+                </a>
+                {{- end -}}
+                {{- if isset . "website" -}}
+                <a 
+                    href="{{ .website }}"
+                    class="button secondary"
+                >
+                    Website
+                </a>
+                {{- end }}
+            </div>
+            {{- end }}
+        </div>
+    </section>
+
+    <section class="with-more">
+        <header>
+            <h2>Latest Posts</h2>
+            <a href="/posts" class="button secondary">
+                View All
+            </a>
+        </header>
+        <post-table>
+            {{-
+                range first 5 (
+                    where .Site.RegularPages.ByPublishDate.Reverse 
+                    "Section" "posts"
+                )
+            }}
+            <post-row 
+                title="{{.Title}}"
+                date="{{ .Date.Format "January 2, 2006" }}"
+                href="{{ .RelPermalink }}"
+            ></post-row>
+            {{- end }}
+        </post-table>
+    </section>
+
+    <section class="card">
+        <header>
+            <h2>Contact Me</h2>
+        </header>
+        <p>
+            If you want to contact me for whatever reason, email is the best way
+            to get in touch. Send one over and I'll reply as soon as I can!
+        </p>
+        <footer>
+            <a 
+                class="button primary"
+                href="mailto:{{ .Site.Params.email }}"
+            >
+             Email Me
+            </a>
+        </footer>
+    </section>
+{{ end }}

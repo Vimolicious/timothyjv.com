@@ -1,0 +1,54 @@
+<template id="post-row">
+    <a>
+        <h2></h2>
+        <time></time>
+    </a>
+
+    <style>
+        a {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            text-decoration: none;
+        }
+
+        a > h2 {
+            color: var(--text-color-light);
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        a:hover > h2 {
+            color: var(--text-color);
+            text-decoration: underline;
+        }
+
+        time {
+            color: var(--accent-color);
+        }
+    </style>
+</template>
+
+<script type="module">
+    import { WebComponent } from "/scripts/webcomponent.js";
+
+    customElements.define("post-row", class extends WebComponent {
+        constructor() {
+            super("#post-row");
+        }
+
+        connectedCallback() {
+            const time = this.getAttribute("date");
+            const href = this.getAttribute("href");
+            const title = this.getAttribute("title");
+
+            const anchorElement = this.shadowRoot.querySelector("a");
+            const timeElement = this.shadowRoot.querySelector("time");
+            const titleElement = this.shadowRoot.querySelector("h2");
+
+            anchorElement.href = href;
+            timeElement.innerHTML = time;
+            titleElement.innerHTML = title;
+        }
+    });
+</script>

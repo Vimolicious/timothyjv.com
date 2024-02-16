@@ -1,0 +1,18 @@
+{{ define "main" }}
+    {{ partial "breadcrumbs" . }}
+    <header class="post-header">
+        <h1>{{ .Title }}</h1>
+        <time>{{ .Date.Format "Janurary 2, 2006" }}</time>
+    </header>
+    <article>
+        {{ .Content }}
+    </article>
+    {{ partial "post-about" . }}
+    <script>
+        const headings = document
+            .querySelectorAll("article :is(h1, h2, h3, h4, h5, h6)")
+            .forEach(e => {
+                e.innerHTML = `<a href="#${e.id}">${e.innerText}</a>`;
+            });
+    </script>
+{{ end }}

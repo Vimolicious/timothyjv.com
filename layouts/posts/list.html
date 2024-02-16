@@ -1,0 +1,17 @@
+{{ define "main" }}
+    <h1>{{ .Section | title }}</h1>
+    {{ partial "components/post-table" }}
+    {{ partial "components/post-row" }}
+    {{ range .Pages.GroupByDate "2006" }}
+    <h2>{{ .Key }}</h2>
+    <post-table>
+        {{ range .Pages }}
+        <post-row 
+            title="{{.Title}}"
+            date="{{ .Date.Format "January 2, 2006" }}"
+            href="{{ .RelPermalink }}"
+        ></post-row>
+        {{ end }}
+    </post-table>
+    {{ end }}
+{{ end }}
