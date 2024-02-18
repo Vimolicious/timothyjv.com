@@ -1,6 +1,7 @@
 baseURL = "https://timothyjv.com/"
 languageCode = "en-us"
 title = "Timothy Volk"
+disableKinds = ["taxonomy", "term"]
 
 [params]
     about = """I'm a software developer who likes to draw, philosophize, and

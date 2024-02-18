@@ -57,6 +57,7 @@
         </div>
     </section>
 
+    {{ with (where .Site.RegularPages.ByPublishDate.Reverse "Section" "posts") }}
     <section class="with-more">
         <header>
             <h2>Latest Posts</h2>
@@ -65,12 +66,7 @@
             </a>
         </header>
         <post-table>
-            {{-
-                range first 5 (
-                    where .Site.RegularPages.ByPublishDate.Reverse 
-                    "Section" "posts"
-                )
-            }}
+            {{- range first 5 . }}
             <post-row 
                 title="{{.Title}}"
                 date="{{ .Date.Format "January 2, 2006" }}"
@@ -79,6 +75,7 @@
             {{- end }}
         </post-table>
     </section>
+    {{ end }}
 
     <section class="card">
         <header>
